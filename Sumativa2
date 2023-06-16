@@ -1,3 +1,5 @@
+Crear Tablas:
+
 create table empresas(
     -> id int NOT NULL,
     -> rut bigint NOT NULL,
@@ -34,3 +36,21 @@ create table postulantes(
     -> correo varchar(200),
     -> estado_civil_id int not null,
     -> empleado bit not null);
+
+Primary Keys:
+
+alter table empresas add primary key(id);
+alter table ofertas add primary key(id);
+alter table postulante_oferta add primary key(postulante_id,oferta_id);
+alter table postulantes add primary key(id);
+
+Foreign Keys:
+
+alter table ofertas add key fk_empresas(empresa_id);
+alter table postulante_oferta add key fk_ofertas(oferta_id),add key fk_postulantes(postulante_id) ;
+
+Constrait:
+
+alter table ofertas
+    -> add constraint fk_ofertas foreign key(empresa_id) references empresas(id);
+
